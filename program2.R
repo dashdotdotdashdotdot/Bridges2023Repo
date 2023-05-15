@@ -3,6 +3,9 @@ rm(list = ls())
 # This program (program2.R) loops over s set of  drawings and store the output as a list of list where each sublist contains results specific to a drawing
 # It essentially repeats program1.R but it is recommended to run program1.R line-by-line first to understand how it works. 
 #prgram is setup so one can rerun a given drawing or a set of new drawings without overwritting drawings that are already been run.
+#may return a message "did not converge in 800 iterations, which means the kmeans function did not 
+#converge. Has not been a problem.
+
 if (file.exists("allDrawings.Rdata")) { load("allDrawings.Rdata") }
 
 library(magick) # used for photo maniuplate
@@ -202,7 +205,7 @@ drawing$correctOrdering = correctOrdering
 lines = makeBreaks(correctOrdering,dsn_Clusters,noBreaks)
 
 drawing$lines = lines
-print(iii)
+print(paste("Have done", iii, "of", length(doOver)))
 if (iii == 1 ) {allDrawings=list(drawing)}  else {allDrawings[[iii]] = drawing
 }
 }
